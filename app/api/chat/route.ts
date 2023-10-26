@@ -8,7 +8,14 @@ import { nanoid } from '@/lib/utils'
 export const runtime = 'edge'
 
 const configuration = new Configuration({
-  apiKey: process.env.OPENAI_API_KEY
+  basePath: 'https://openrouter.ai/api/v1/',
+  apiKey: process.env.OPENAI_API_KEY as string,
+  baseOptions: {
+    headers: {
+      "HTTP-Referer": 'https://www.1024paas.com/',
+      "X-Title":'1024pass',
+    },
+  },
 })
 
 const openai = new OpenAIApi(configuration)
